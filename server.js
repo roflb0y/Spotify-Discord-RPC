@@ -105,7 +105,7 @@ app.get('/callback', function(req, res) {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
-        redirect_uri: config.REDIRECT_URI,
+        redirect_uri: "http://localhost:8888/callback",
         grant_type: 'authorization_code'
       },
       headers: {
@@ -137,6 +137,7 @@ app.get('/callback', function(req, res) {
         // we can also pass the token to the browser to make requests from there
           res.redirect('/');
       } else {
+        console.log(response);
         res.redirect('/?' +
           querystring.stringify({
             error: 'invalid_token'
